@@ -1,4 +1,4 @@
-export type SymbolCode = 'EURUSD' | 'GBPUSD' | 'XAUUSD';
+export type SymbolCode = 'EURUSD' | 'GBPUSD' | 'ETHUSDT';
 
 export type Tick = {
   symbol: SymbolCode;

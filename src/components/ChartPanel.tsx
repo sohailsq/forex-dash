@@ -309,12 +309,24 @@ export const ChartPanel = memo(function ChartPanel({ symbol, feed, isSelected = 
     return () => { chart.unsubscribeCrosshairMove(crosshairMoveHandler) }
   }, [mode])
 
-  const formatPrice = useCallback((price: number) => {
-    return price.toLocaleString(undefined, { 
-      minimumFractionDigits: symbol === 'XAUUSD' ? 2 : 5,
-      maximumFractionDigits: symbol === 'XAUUSD' ? 2 : 5,
-    })
-  }, [symbol])
+const formatPrice = useCallback((price?: number) => {
+  if (price === undefined || price === null || isNaN(price)) {
+    return "—"; // fallback when no valid price
+  }
+
+  if (symbol === 'ETHUSDT') {
+    return `$${price.toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })}`;
+  }
+
+  return price.toLocaleString(undefined, {
+    minimumFractionDigits: 5,
+    maximumFractionDigits: 5,
+  });
+}, [symbol]);
+
 
   const formatTime = useCallback((timestamp: number) => {
     return new Date(timestamp * 1000).toLocaleTimeString()

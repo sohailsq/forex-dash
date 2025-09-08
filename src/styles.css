@@ -277,6 +277,19 @@ main {
   margin-top: 20px;
 }
 
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 16px 0;
+  text-align: center;
+  padding: 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  border-bottom: none;
+}
+
 .grid {
   display: grid;
   gap: 20px;
@@ -1120,6 +1133,11 @@ tr:hover {
   }
   
   .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .three-charts-grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }

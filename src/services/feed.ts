@@ -8,19 +8,19 @@ const FINNHUB_KEY = ((import.meta as any).env?.VITE_FINNHUB_API_KEY) || "d1ehg3p
 const mapToFinnhub: Record<SymbolCode, string> = {
   EURUSD: 'OANDA:EUR_USD',
   GBPUSD: 'OANDA:GBP_USD',
-  XAUUSD: 'OANDA:XAU_USD',
+  ETHUSDT: 'BINANCE:ETHUSDT',
 }
 const mapFromFinnhub: Record<string, SymbolCode> = {
   'OANDA:EUR_USD': 'EURUSD',
   'OANDA:GBP_USD': 'GBPUSD',
-  'OANDA:XAU_USD': 'XAUUSD',
+  'BINANCE:ETHUSDT': 'ETHUSDT',
 }
 
 export class PriceFeed {
   private subs: Record<SymbolCode, Set<Subscriber>> = {
     EURUSD: new Set(),
     GBPUSD: new Set(),
-    XAUUSD: new Set(),
+    ETHUSDT: new Set(),
   }
   private timer?: number
   private prices: Record<SymbolCode, number> = { ...STARTING_PRICES }
@@ -52,7 +52,7 @@ export class PriceFeed {
       const ts = Math.floor(Date.now() / 1000)
       ;(Object.keys(this.subs) as SymbolCode[]).forEach(symbol => {
         const last = this.prices[symbol]
-        const vol = symbol === 'XAUUSD' ? 0.004 : 0.0003
+        const vol = symbol === 'ETHUSDT' ? 0.004 : 0.0003
         const next = last * (1 + (Math.random() - 0.5) * vol)
         this.prices[symbol] = next
         const tick: Tick = { symbol, price: Number(next.toFixed(5)), ts }

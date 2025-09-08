@@ -9,7 +9,7 @@ const initialState: MarketState = {
   lastPrice: {
     EURUSD: undefined,
     GBPUSD: undefined,
-    XAUUSD: undefined,
+    ETHUSD: undefined,
   },
 }
 

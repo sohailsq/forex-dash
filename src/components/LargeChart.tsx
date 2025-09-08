@@ -261,15 +261,13 @@ export const LargeChart = memo(function LargeChart({ symbol, feed, mode }: Props
           close: wc.close 
         }
         candleRef.current?.update(cd)
-        // store history as our Candle type (ensure time is a number)
-        const candleEntry: Candle = {
-          time: Number(wc.time),
+        candleHistory.current.push({
+          time: wc.time,
           open: wc.open,
           high: wc.high,
           low: wc.low,
-          close: wc.close,
-        }
-        candleHistory.current.push(candleEntry)
+          close: wc.close
+        })
         if (candleHistory.current.length > 100) {
           candleHistory.current.shift()
         }
@@ -425,9 +423,15 @@ export const LargeChart = memo(function LargeChart({ symbol, feed, mode }: Props
   }, [mode])
 
   const formatPrice = useCallback((price: number) => {
+    if (symbol === 'ETHUSDT') {
+      return `$${price.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })}`
+    }
     return price.toLocaleString(undefined, { 
-      minimumFractionDigits: symbol === 'XAUUSD' ? 2 : 5,
-      maximumFractionDigits: symbol === 'XAUUSD' ? 2 : 5,
+      minimumFractionDigits: 5,
+      maximumFractionDigits: 5,
     })
   }, [symbol])
 

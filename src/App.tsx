@@ -51,11 +51,11 @@ const App = memo(function App() {
               />
             </div>
             <div className="chart-wrapper">
-              <h3 className="chart-title">XAU/USD (Gold)</h3>
+              <h3 className="chart-title">ETH/USDT</h3>
               <ChartPanel 
-                symbol="XAUUSD" 
+                symbol="ETHUSDT" 
                 feed={feed} 
-                isSelected={selectedChart.symbol === 'XAUUSD'}
+                isSelected={selectedChart.symbol === 'ETHUSDT'}
                 onSelect={handleChartSelect}
               />
             </div>

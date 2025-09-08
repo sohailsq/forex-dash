@@ -12,7 +12,7 @@ const initialState: PortfolioState = {
   positions: {
     EURUSD: undefined,
     GBPUSD: undefined,
-    XAUUSD: undefined,
+    ETHUSD: undefined,
   },
   trades: [],
 }
